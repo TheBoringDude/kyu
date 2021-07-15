@@ -43,7 +43,7 @@ class Quote {
   String quote;
   String length;
   String author;
-  Map<String, dynamic> tags;
+  List<String> tags;
   String category;
   String language;
   String date;
@@ -67,11 +67,13 @@ class Quote {
   });
 
   factory Quote.fromJson(Map<String, dynamic> data) {
+    Iterable ts = data['tags'];
+
     return Quote(
         quote: data['quote'],
         length: data['length'],
         author: data['author'],
-        tags: data['tags'],
+        tags: List<String>.from(ts.map((e) => e.toString())),
         category: data['category'],
         language: data['language'],
         date: data['date'],

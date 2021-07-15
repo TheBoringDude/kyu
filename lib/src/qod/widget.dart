@@ -25,6 +25,7 @@ class _QODWidgetState extends State<QODWidget> {
           if (snapshot.hasData) {
             return showQuote(snapshot.data);
           } else if (snapshot.hasError) {
+            print(snapshot.error);
             return Text('${snapshot.error}');
           }
 
@@ -43,8 +44,12 @@ class _QODWidgetState extends State<QODWidget> {
             child: Image.network("${q?.contents.quotes[0].background}", height: 150),
           ),
           Text(
-            "${q?.contents.quotes[0].quote}",
-            style: TextStyle(fontSize: 20, letterSpacing: 0.9),
+            '"${q?.contents.quotes[0].quote}"',
+            style: TextStyle(
+                fontSize: 20,
+                letterSpacing: 0.9,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey.shade800),
             textAlign: TextAlign.center,
           ),
           Container(
